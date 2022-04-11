@@ -24,6 +24,13 @@ public class CategoryService {
 		Page<Category> list = repository.findAll(pageable);
 		return list.map(x -> new CategoryDTO(x));
 	}
+
+	@Transactional(readOnly = true)
+		public CategoryDTO findById(Long id) {
+			Optional<Category> obj = repository.findById(id);
+			Category entity = obj.get();
+			return new CategoryDTO(entity);
+		}
 	
 	
 
