@@ -23,4 +23,6 @@ public class CategoryResource {
 		Page<CategoryDTO> page = service.findAll(pageable);
 		return ResponseEntity.ok().body(page);
 	}
+	
+	
 }

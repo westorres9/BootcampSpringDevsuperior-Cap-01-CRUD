@@ -1,6 +1,8 @@
 package com.devsuperior.dscatalog.services;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,5 +24,7 @@ public class CategoryService {
 		Page<Category> list = repository.findAll(pageable);
 		return list.map(x -> new CategoryDTO(x));
 	}
+	
+	
 
 }
