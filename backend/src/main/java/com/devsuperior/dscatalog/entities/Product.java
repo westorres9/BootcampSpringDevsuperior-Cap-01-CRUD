@@ -1,25 +1,34 @@
 package com.devsuperior.dscatalog.entities;
 
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-public class Product {
+public class Product implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String name;
 	private String description;
 	private Double price;
 	private String imgUrl;
+	private Instant date;
+	
+	Set<Category> categories = new HashSet<>();
 	
 	public Product() {
 	}
 
-	public Product(Long id, String name, String description, Double price, String imgUrl) {
+	public Product(Long id, String name, String description, Double price, String imgUrl, Instant date) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imgUrl = imgUrl;
+		this.date = date;
 	}
 
 	public Long getId() {
@@ -62,6 +71,18 @@ public class Product {
 		this.imgUrl = imgUrl;
 	}
 
+	public Instant getDate() {
+		return date;
+	}
+
+	public void setDate(Instant date) {
+		this.date = date;
+	}
+	
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -79,6 +100,4 @@ public class Product {
 		return Objects.equals(id, other.id);
 	}
 	
-	
-
 }
