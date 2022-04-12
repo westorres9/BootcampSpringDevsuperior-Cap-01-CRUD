@@ -1,5 +1,6 @@
 package com.devsuperior.dscatalog.DTO;
 
+import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.entities.Product;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -18,7 +20,7 @@ public class ProductDTO implements Serializable {
     private String imgUrl;
     private Instant date;
 
-    private List<CategoryDTO> list = new ArrayList<>();
+    private List<CategoryDTO> categories = new ArrayList<>();
 
     public ProductDTO() {
     }
@@ -39,6 +41,11 @@ public class ProductDTO implements Serializable {
         this.price = entity.getPrice();
         this.imgUrl = entity.getImgUrl();
         this.date = entity.getDate();
+    }
+
+    public ProductDTO(Product entity, Set<Category> categories) {
+        this(entity);
+        categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
     }
 
     public Long getId() {
@@ -65,7 +72,7 @@ public class ProductDTO implements Serializable {
         return date;
     }
 
-    public List<CategoryDTO> getList() {
-        return list;
+    public List<CategoryDTO> getCategories() {
+        return categories;
     }
 }
